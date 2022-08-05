@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="cashiercheckout_cashiers_listing_data_source" xsi:type="string">Perspective\CashierCheckout\Model\ResourceModel\Cashier\Grid</item>
+                <item name="sales_order_grid_data_source" xsi:type="string">Perspective\CashierCheckout\Model\ResourceModel\Order\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Perspective\CashierCheckout\Model\ResourceModel\Cashier\Grid" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">ps_cc_cashiers</argument>
+            <argument name="resourceModel" xsi:type="string">Perspective\CashierCheckout\Model\ResourceModel\Cashier\Collection</argument>
+        </arguments>
+    </virtualType>
+    <preference for="Perspective\CashierCheckout\Api\Data\CashierInterface"
+                type="Perspective\CashierCheckout\Model\Cashier"/>
+    <preference for="Perspective\CashierCheckout\Api\PreparedCashierRepositoryInterface"
+                type="Perspective\CashierCheckout\Model\PreparedCashierRepository"/>
+    <preference for="Perspective\CashierCheckout\Api\CashierPersistorInterface"
+                type="Perspective\CashierCheckout\Model\CashierPersistor"/>
+    <preference for="Perspective\CashierCheckout\Api\CartIdAndCashierDependencyRepositoryInterface"
+                type="Perspective\CashierCheckout\Model\CartIdAndCashierDependencyRepository"/>
+    <preference for="Perspective\CashierCheckout\Api\CashierRepositoryInterface"
+                type="Perspective\CashierCheckout\Model\CashierRepository"/>
+    <type name="Magento\Sales\Model\OrderRepository">
+        <plugin name="ps_cc_cashier_order_plugin" type="Perspective\CashierCheckout\Plugin\Api\OrderRepository" />
+    </type>
+</config>

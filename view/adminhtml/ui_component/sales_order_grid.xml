@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <listingToolbar name="listing_top">
+        <filters name="listing_filters">
+            <filterSelect name="cashier_name" provider="${ $.parentName }">
+                <settings>
+                    <options class="Perspective\CashierCheckout\Ui\Cashiers\Listing\Column\Source"/>
+                    <caption translate="true">Choose the Seller</caption>
+                    <label translate="true">Seller Name</label>
+                    <dataScope>cashier_name</dataScope>
+                    <imports>
+                        <link name="visible">ns = ${ $.ns }, index = ${ $.index }:visible</link>
+                    </imports>
+                </settings>
+            </filterSelect>
+        </filters>
+    </listingToolbar>
+
+    <columns name="sales_order_columns">
+
+        <column name="cashier_name" class="Perspective\CashierCheckout\Ui\Cashiers\Listing\Column\Name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="options" xsi:type="object">Perspective\CashierCheckout\Ui\Cashiers\Listing\Column\Source</item>
+                    <item name="sortOrder" xsi:type="number">19</item>
+                    <item name="label" xsi:type="string" translate="true">Seller name</item>
+                </item>
+            </argument>
+        </column>
+    </columns>
+
+</listing>

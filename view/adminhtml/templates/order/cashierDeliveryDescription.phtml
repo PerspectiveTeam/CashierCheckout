@@ -1,0 +1,24 @@
+<?php /**@var $block \Perspective\CashierCheckout\Block\Adminhtml\Order\CashierDeliveryInfo */ ?>
+<?php /* @var $escaper \Magento\Framework\Escaper */ ?>
+<?php if ($block->getEnabled()): ?>
+    <section class="admin__page-section order-cashier">
+        <div class="admin__page-section-title">
+            <span class="title"><?= $escaper->escapeHtml(__('Seller info')) ?></span>
+        </div>
+        <?php foreach ($block->getInfo()->getData() as $key => $value): ?>
+
+            <?php if ($block->allowedToShow($key, $value)): ?>
+                <div class="admin__page-section-content">
+                    <div class="admin__page-section-item order-<?= $key ?>">
+                        <div class="admin__page-section-item-title">
+                            <span class="title"><?= $escaper->escapeHtml(__($block->decorateKey($key))) ?></span>
+                            <div class="admin__page-section-item-content">
+                                <?= $escaper->escapeHtml(__($block->decorateValue($key, (string)$value))) ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endif; ?>
+        <?php endforeach; ?>
+    </section>
+<?php endif ?>

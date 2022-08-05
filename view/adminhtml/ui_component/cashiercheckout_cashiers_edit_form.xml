@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2019. Perspective
+  -->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">cashiercheckout_cashiers_edit_form.cashiercheckout_cashiers_edit_form_data_source</item>
+            <item name="deps" xsi:type="string">cashiercheckout_cashiers_edit_form.cashiercheckout_cashiers_edit_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Input</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+
+    <settings>
+        <buttons>
+
+            <button name="save_and_continue"
+                    class="Perspective\CashierCheckout\Block\Adminhtml\Cashier\Control\SaveButton"/>
+            <button name="back">
+                <url path="*/*/"/>
+                <class>back</class>
+                <label translate="true">Back</label>
+            </button>
+        </buttons>
+        <namespace>cashiercheckout_cashiers_edit_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>cashiercheckout_cashiers_edit_form.cashiercheckout_cashiers_edit_form_data_source</dep>
+        </deps>
+    </settings>
+
+    <dataSource name="cashiercheckout_cashiers_edit_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="cashiercheckout/cashiers/save"/>
+        </settings>
+        <dataProvider class="Perspective\CashierCheckout\Ui\Cashiers\Entity\DataProvider"
+                      name="cashiercheckout_cashiers_edit_form_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+
+    <fieldset name="cashier_details_fieldset">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Salesman Details</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="opened" xsi:type="boolean">true</item>
+            </item>
+        </argument>
+        <field name="cashier_name" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">cashier_name</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>input</dataType>
+                <label translate="true">Salesman Name</label>
+                <visible>true</visible>
+            </settings>
+        </field>
+    </fieldset>
+    <dynamicRows name="ps_cc_cashier_order"
+                 class="Perspective\CashierCheckout\Ui\Cashiers\Entity\Container\RowContainer">
+        <argument name="data" xsi:type="array">
+            <item name="label" xsi:type="string" translate="true">Cashiers order</item>
+            <item name="config" xsi:type="array">
+                <item name="visible" xsi:type="boolean">true</item>
+            </item>
+        </argument>
+        <settings>
+            <addButton>false</addButton>
+            <componentType>dynamicRows</componentType>
+            <dndConfig>
+                <param name="enabled" xsi:type="boolean">true</param>
+                <param name="draggableElementClass" xsi:type="string">_dragged</param>
+            </dndConfig>
+            <pageSize>900719925474099</pageSize>
+        </settings>
+        <container name="record" component="Magento_Ui/js/dynamic-rows/record">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="isTemplate" xsi:type="boolean">true</item>
+                    <item name="is_collection" xsi:type="boolean">true</item>
+                    <item name="componentType" xsi:type="string">container</item>
+                </item>
+            </argument>
+            <field name="id" formElement="hidden">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="visible" xsi:type="boolean">false</item>
+                    </item>
+                </argument>
+            </field>
+            <field name="cashier_id" formElement="input">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="fit" xsi:type="boolean">false</item>
+                    </item>
+                </argument>
+                <settings>
+                    <disabled>1</disabled>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">true</rule>
+                    </validation>
+                    <dataType>text</dataType>
+                    <label>Salesman ID</label>
+                </settings>
+            </field>
+            <field name="current_sort_order" formElement="input">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="visible" xsi:type="boolean">false</item>
+                    </item>
+                </argument>
+                <settings>
+                    <dataType>text</dataType>
+                    <disabled>1</disabled>
+                    <label>Current saved sort order</label>
+                </settings>
+            </field>
+            <field name="sort_order" formElement="input">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="visible" xsi:type="boolean">false</item>
+                    </item>
+                </argument>
+                <settings>
+                    <dataType>text</dataType>
+                    <disabled>0</disabled>
+                    <label>New sorting order</label>
+                </settings>
+            </field>
+            <field name="cashier_name" formElement="input">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="fit" xsi:type="boolean">false</item>
+                    </item>
+                </argument>
+                <settings>
+                    <dataType>text</dataType>
+                    <disabled>1</disabled>
+                    <label>Salesman Name</label>
+                </settings>
+            </field>
+            <field name="position">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="prefixName" xsi:type="string">option.position</item>
+                        <item name="prefixElementName" xsi:type="string">option_</item>
+                        <item name="formElement" xsi:type="string">input</item>
+                    </item>
+                </argument>
+                <settings>
+                    <additionalClasses>
+                        <class name="_hidden">true</class>
+                    </additionalClasses>
+                    <dataType>text</dataType>
+                    <visible>false</visible>
+                    <dataScope>position</dataScope>
+                </settings>
+            </field>
+        </container>
+    </dynamicRows>
+</form>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Perspective_CashierCheckout::cashiercheckout"
+             module="Perspective_CashierCheckout" resource="Perspective_CashierCheckout::cashiercheckout" sortOrder="50"
+             title="Salesman Checkout" parent="Magento_Sales::sales"/>
+        <add id="Perspective_CashierCheckout::cashiercheckout_main" title="Salesmans"
+             module="Perspective_CashierCheckout" sortOrder="10" action="cashiercheckout/cashiers/index"
+             resource="Perspective_CashierCheckout::cashiercheckout_main"
+             parent="Perspective_CashierCheckout::cashiercheckout"/>
+    </menu>
+</config>

@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="ps_cc_cashiers" resource="default" engine="innodb" comment="Cashiers Ids">
+        <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Entity Id"/>
+        <column xsi:type="timestamp" name="updated_at" nullable="false" default="CURRENT_TIMESTAMP" on_update="true"
+                comment="Updated At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <index referenceId="PERSPECTIVE_CASHIERCHECKOUT_CASHIERS_INDEX" indexType="btree">
+            <column name="id"/>
+        </index>
+    </table>
+    <table name="ps_cc_cashiers_details" resource="default" engine="innodb" comment="Cashiers details">
+        <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Id"/>
+        <column xsi:type="int" name="cashier_id" unsigned="true" nullable="false" comment="Cashier Id"/>
+        <column xsi:type="varchar" name="cashier_name" nullable="true" comment="Cashier Name"/>
+        <column xsi:type="timestamp" name="updated_at" nullable="false" default="CURRENT_TIMESTAMP" on_update="true"
+                comment="Updated At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <index referenceId="PERSPECTIVE_CASHIERCHECKOUT_CASHIERS_DETAILS_INDEX" indexType="btree">
+            <column name="id"/>
+        </index>
+
+    </table>
+    <table name="ps_cc_cashiers_sort_order" resource="default" engine="innodb" comment="Cashiers sort order">
+        <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Id"/>
+        <column xsi:type="int" name="cashier_id" unsigned="true" nullable="false" comment="Cashier Id"/>
+        <column xsi:type="int" name="sort_order" nullable="true" default="0" comment="Sort Id"/>
+        <column xsi:type="timestamp" name="updated_at" nullable="false" default="CURRENT_TIMESTAMP" on_update="true"
+                comment="Updated At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <index referenceId="PERSPECTIVE_CASHIERCHECKOUT_CASHIERS_SORT_ORDER_INDEX" indexType="btree">
+            <column name="id"/>
+        </index>
+    </table>
+    <table name="ps_cc_cashiers_cart_cashier_dependency" resource="default" engine="innodb"
+           comment="Persistence of cart id and cashier id">
+        <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Entity Id"/>
+        <column xsi:type="int" name="cart_id" padding="10" unsigned="true" nullable="false" identity="false"
+                comment="cart_id"/>
+        <column xsi:type="text" name="cashier_id"  nullable="false"
+                comment="cashier_id"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Update Time"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+    </table>
+</schema>
